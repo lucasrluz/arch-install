@@ -23,9 +23,7 @@ mkswap /dev/sda3
 # Monta as partições
 mount /dev/sda2 /mnt
 
-mkdir -r /mnt/boot/efi
-
-mount /dev/sda1 /mnt/boot/efi
+mount --mkdir /dev/sda1 /mnt/boot/efi
 
 swapon /dev/sda3
 
