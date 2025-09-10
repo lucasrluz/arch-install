@@ -20,12 +20,29 @@ mkfs.fat -F32 /dev/sda1
 mkfs.ext4 /dev/sda2
 mkswap /dev/sda3
 
+sleep 1
+
 # Monta as partições
 mount /dev/sda2 /mnt
 
 mount --mkdir /dev/sda1 /mnt/boot/efi
 
 swapon /dev/sda3
+
+sleep 1
+
+# Instalação do sistema base
+pacstrap -K /mnt base linux linux-firmware
+
+sleep 1
+
+# Fstab
+genfstab -U /mnt >> /mnt/etc/fstab
+
+sleep 1
+
+echo "Instalação base finalizada"
+
 
 
 
