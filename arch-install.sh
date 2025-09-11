@@ -1,5 +1,22 @@
 #!/bin/bash
 
+GREEN='\033[0;32m'
+NC='\033[0m'
+
+# Informações
+sleep 1
+echo -e "${GREEN}Script de instalação do Arch Linux\n${NC}"
+sleep 1
+
+echo -e "Configuração das partições:"
+sleep 0.1
+echo -e "| /dev/sda1 | 1G   | EFI  | /boot/efi |"
+sleep 0.1
+echo -e "| /dev/sda2 | 4G   | swap |           |"
+sleep 0.1
+echo -e "| /dev/sda3 | 100% | ext4 | /         |"
+sleep 0.1
+
 # Tabela de partição GPT
 parted -s /dev/sda mklabel gpt
 
