@@ -1,13 +1,36 @@
 #!/bin/bash
 set -euo pipefail
 
+# Cores
 GREEN='\033[0;32m'
 NC='\033[0m'
+
+# Variáveis
+DISK="/dev/sda"
+HOSTNAME="archlinux"
+USERNAME="lucas"
+TIMEZONE="America/Sao_Paulo"
+LOCALE="pt_BR.UTF-8"
+KEYMAP="br-abnt2"
 
 # Informações
 sleep 1
 echo -e "${GREEN}Script de instalação do Arch Linux\n${NC}"
 sleep 1
+
+echo "Configuração:"
+echo "DISK = $DISK"
+echo "HOSTNAME = $HOSTNAME"
+echo "USERNAME = $USERNAME"
+echo "TIMEZONE = $TIMEZONE"
+echo "LOCALE = $LOCALE"
+echo "KEYMAP = $KEYMAP"
+
+read -p "Digite yes para continuar: " CONF
+if [[ "$CONF" != "yes"]]; then
+    echo "Abortado."
+    exit 1
+fi
 
 echo -e "Configuração das partições:"
 sleep 0.1
