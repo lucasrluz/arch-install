@@ -2,10 +2,16 @@
 set -euo pipefail
 
 # Cores
-GREEN='\033[0;32m'
-NC='\033[0m'
+RED="\e[31m"
+GREEN="\e[32m"
+YELLOW="\e[33m"
+BLUE="\e[34m"
+MAGENTA="\e[35m"
+CYAN="\e[36m"
+WHITE="\e[37m"
+RESET="\e[0m"
 
-# Variáveis
+# Configuração básica
 DISK="/dev/sda"
 HOSTNAME="archlinux"
 USERNAME="lucas"
@@ -15,31 +21,39 @@ KEYMAP="br-abnt2"
 
 # Informações
 sleep 1
-echo -e "${GREEN}Script de instalação do Arch Linux\n${NC}"
+echo -e "${GREEN}Script de instalação do Arch Linux${RESET}"
 sleep 1
 
-echo "Configuração:"
-echo "DISK = $DISK"
-echo "HOSTNAME = $HOSTNAME"
-echo "USERNAME = $USERNAME"
-echo "TIMEZONE = $TIMEZONE"
-echo "LOCALE = $LOCALE"
-echo "KEYMAP = $KEYMAP"
+echo -e "\n${BLUE}[CONFIGURAÇÃO BÁSICA]${RESET}"
+sleep 1
+echo "DISK      = $DISK"
+sleep 0.1
+echo "HOSTNAME  = $HOSTNAME"
+sleep 0.1
+echo "USERNAME  = $USERNAME"
+sleep 0.1
+echo "TIMEZONE  = $TIMEZONE"
+sleep 0.1
+echo "LOCALE    = $LOCALE"
+sleep 0.1
+echo "KEYMAP    = $KEYMAP"
+sleep 0.1
 
-read -p "Digite yes para continuar: " CONF
-if [[ "$CONF" != "yes"]]; then
-    echo "Abortado."
-    exit 1
-fi
-
-echo -e "Configuração das partições:"
+# Configuração das partições
+echo -e "\n${BLUE}[CONFIGURAÇÃO DAS PARTIÇÕES]${RESET}"
 sleep 0.1
 echo -e "| /dev/sda1 | 1G   | EFI  | /boot/efi |"
 sleep 0.1
 echo -e "| /dev/sda2 | 4G   | swap |           |"
 sleep 0.1
-echo -e "| /dev/sda3 | 100% | ext4 | /         |"
+echo -e "| /dev/sda3 | 100% | ext4 | /         |\n"
 sleep 0.1
+
+read -p "Continuar com a instalação? [y/n] " CONF
+if [[ "$CONF" != "y" ]]; then
+    echo -e "${RED}Instalação abortada${RESET}"
+    exit 1
+fi
 
 # Tabela de partição GPT
 parted -s /dev/sda mklabel gpt
