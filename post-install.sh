@@ -16,4 +16,10 @@ sudo systemctl enable tlp.service
 sudo systemctl start tlp.service
 sudo systemctl mask systemd-rfkill.service systemd-rfkill.socket
 
+cp dotfiles/etc/tlp.conf /etc/tlp.conf
+
+sudo tlp start
+
+cp dotfiles/etc/30-touchpad.conf /etc/X11/xorg.conf.d/30-touchpad.conf
+
 echo "Adicionar i3 ao .xinitrc"
