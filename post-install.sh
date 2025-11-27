@@ -9,4 +9,7 @@ mv dotfiles/.config/ ~/
 
 cp /etc/X11/xinit/xinitrc ~/.xinitrc
 
+sudo systemctl enable fstrim.timer
+sudo systemctl start fstrim.timer
+
 echo "Adicionar i3 ao .xinitrc"
